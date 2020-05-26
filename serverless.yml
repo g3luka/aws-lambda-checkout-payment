@@ -1,0 +1,73 @@
+service: trb-checkout
+
+provider:
+  name: aws
+  region: '${opt:region, ''us-east-1''}'
+  runtime: nodejs12.x
+  stage: '${opt:stage, ''stg''}'
+  tags:
+    business-unit: tribunapr
+    project: checkout
+    application: ${self:service}
+    stage: ${self:provider.stage}
+  deploymentBucket:
+    name: 'assembler-${self:provider.stage}'
+
+# plugins:
+  # - serverless-plugin-warmup
+  # - serverless-offline
+
+# custom:
+#   # Enable warmup on all functions (only for production and staging)
+#   warmup:
+#       - production
+#       - staging
+
+functions:
+  app:
+    description: "Checkout | Integrações com gateways de pagamento"
+    handler: dist/lambda.handler
+    memorySize: 1024
+    timeout: 30
+    vpc: ${file(./config/serverless/stage/${self:provider.stage}.yml):VPC}
+    environment:
+      ENV: ${self:provider.stage}
+      STAGE: ${self:provider.stage}
+      DB_HOST: ${file(./config/serverless/stage/${self:provider.stage}.yml):DB_HOST}
+      DB_NAME: ${file(./config/serverless/stage/${self:provider.stage}.yml):DB_NAME}
+      DB_PASS: ${file(./config/serverless/stage/${self:provider.stage}.yml):DB_PASS}
+      DB_USER: ${file(./config/serverless/stage/${self:provider.stage}.yml):DB_USER}
+      COOKIE_SESSION_SECRET: ${file(./config/serverless/stage/${self:provider.stage}.yml):COOKIE_SESSION_SECRET}
+      PAGSEGURO_EMAIL: ${file(./config/serverless/stage/${self:provider.stage}.yml):PAGSEGURO_EMAIL}
+      PAGSEGURO_TOKEN: ${file(./config/serverless/stage/${self:provider.stage}.yml):PAGSEGURO_TOKEN}
+      MERCADOPAGO_ACCESS_TOKEN: ${file(./config/serverless/stage/${self:provider.stage}.yml):MERCADOPAGO_ACCESS_TOKEN}
+      PICPAY_TOKEN:  ${file(./config/serverless/stage/${self:provider.stage}.yml):PICPAY_TOKEN}
+      PICPAY_SELLER_TOKEN: ${file(./config/serverless/stage/${self:provider.stage}.yml):PICPAY_SELLER_TOKEN}
+      RECAPTCHA_SECRET_KEY: 6LeGqdMUAAAAAJEjKsSHts0LsMchndzrXQ4e3pWG
+      RECAPTCHA_MINIMUM_SCORE: 0.5
+    events:
+      - http:
+          method: any
+          path: /{any+}
+          cors:
+            origin: '*'
+            allowCredentials: true
+            headers:
+              - Authorization
+              - Content-Type
+              - X-Amz-Date
+              - X-Amz-Security-Token
+
+package:
+  excludeDevDependencies: true
+  exclude:
+    - '*'
+    - .idea/**
+    - .vscode/**
+    - config/**
+    - src/**
+    - bin/**
+    - coverage/**
+    - temp/**
+    - test/**
+    - docker/**

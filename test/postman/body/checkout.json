@@ -1,0 +1,43 @@
+{
+	"currency": "BRL",
+	"reference": "REF12345",
+	"items": {
+    "id": 1,
+    "description": "Produto 1",
+    "amount": 5,
+    "quantity": 1,
+    "weight": 0,
+    "shippingCost": 0
+	},
+	"sender": {
+    "name": "Marcelozera",
+    "email": "marcelo@tesis.digital",
+    "phone": {
+      "areaCode": 41,
+      "number": 999998888
+    },
+    "documents": [
+      {
+        "type": "CPF",
+        "value": "53620645922"
+      }
+    ],
+    "bornDate": "31/08/1991"
+	},
+	"shipping": {
+    "addressRequired": true,
+    "address": {
+      "street": "Rua dos Louco",
+      "number": 0,
+      "complement": "Não vou contar",
+      "district": "Centro",
+      "postalCode": 80000000,
+      "city": "Curitiba",
+      "state": "PR",
+      "country": "BRA"
+    }
+	},
+	"extraAmount": 0,
+	"redirectURL": "https://tesis.digital/",
+	"maxUses": 1
+}
