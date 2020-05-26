@@ -1,0 +1,19 @@
+DB_HOST:
+DB_NAME:
+DB_USER:
+DB_PASS:
+DB_LOG: false
+COOKIE_SESSION_SECRET:
+PAGSEGURO_EMAIL:
+PAGSEGURO_TOKEN:
+MERCADOPAGO_ACCESS_TOKEN:
+PICPAY_TOKEN:
+PICPAY_SELLER_TOKEN:
+# ---------------------------------------------------------------------------------------------------------------------
+#                                                                                                                   VPC
+VPC:
+  securityGroupIds:
+    - '???'
+  subnetIds:
+    - '???'
+    - '???'

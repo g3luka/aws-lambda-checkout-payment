@@ -38,4 +38,4 @@ jspm_packages
 
 # Serverless directories
 .serverless
-config/serverless/stage/*
+# config/serverless/stage/*
