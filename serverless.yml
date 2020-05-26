@@ -43,7 +43,7 @@ functions:
       MERCADOPAGO_ACCESS_TOKEN: ${file(./config/serverless/stage/${self:provider.stage}.yml):MERCADOPAGO_ACCESS_TOKEN}
       PICPAY_TOKEN:  ${file(./config/serverless/stage/${self:provider.stage}.yml):PICPAY_TOKEN}
       PICPAY_SELLER_TOKEN: ${file(./config/serverless/stage/${self:provider.stage}.yml):PICPAY_SELLER_TOKEN}
-      RECAPTCHA_SECRET_KEY: 6LeGqdMUAAAAAJEjKsSHts0LsMchndzrXQ4e3pWG
+      RECAPTCHA_SECRET_KEY:
       RECAPTCHA_MINIMUM_SCORE: 0.5
     events:
       - http:

@@ -1,10 +1,10 @@
 {
-  "name": "checkout",
+  "name": "g3luka/aws-lambda-checkout-payment",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
-  "private": true,
-  "license": "UNLICENSED",
+  "description": "Amazon Lambda Checkout com PicPay, MercadoPago e PagSeguro",
+  "author": "Giovanni de Luca",
+  "private": false,
+  "license": "MIT",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
